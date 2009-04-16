@@ -22,6 +22,7 @@ setup(name='pinginventory',
     entry_points={
         'console_scripts':[
             'pinginventory-take-inventory = pinginventory.commands:take_inventory',
+            'pinginventory-show-ip = pinginventory.commands:show_ip',
         ]
     }
 )
