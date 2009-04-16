@@ -54,7 +54,8 @@ class Inventory(Base):
     def count(self):
         return Session.query(Inventory).count()
 
-    nodes       = orm.relation('Node', backref='inventory', lazy='dynamic',order_by='Node.ip')
+    nodes = orm.relation('Node', backref='inventory', lazy='dynamic',order_by='Node.ip',
+                                cascade="all, delete, delete-orphan")
 
 
 class Node(Base):
