@@ -13,8 +13,8 @@ class PingInventory:
         model.init_model(model.sa.create_engine(uri))
         self.networks = c.get("scan", "networks").split(";")
 
-    def get_latest_up_devices(self):
-        """Return all the devices listed as being up"""
+    def get_latest_up_nodes(self):
+        """Return all the nodes listed as being up"""
         i = model.Inventory.latest()
         return [n.ip for n in i.nodes]
 
@@ -29,13 +29,19 @@ class PingInventory:
             last = state
             
 
-    def take_inventory(self):
+    def do_ping_scan(self):
+        return nmapping.ping(self.networks)
+
+    def take_inventory(self, scanner=None):
+        if scanner is None:
+            scanner = self.do_ping_scan
+
         i = model.Inventory()
         i.starttime = datetime.datetime.now()
         model.Session.add(i)
 
         num = 0
-        for ip in nmapping.ping(self.networks):
+        for ip in scanner():
             n=model.Node()
             n.ip = ip
             n.inventory = i
