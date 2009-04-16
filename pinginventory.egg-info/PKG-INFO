@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: pinginventory
+Version: 0.0dev
+Summary: Inventory devices using ICMP
+Home-page: UNKNOWN
+Author: Justin Azoff
+Author-email: JAzoff@uamail.albany.edu
+License: MIT
+Description: UNKNOWN
+Keywords: ICMP scan
+Platform: UNKNOWN
