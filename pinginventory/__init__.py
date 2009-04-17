@@ -3,7 +3,7 @@ import datetime
 
 
 import model
-import nmapping
+from pinginventory import nmapping
 class PingInventory:
 
     def __init__(self, inifile):

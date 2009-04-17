@@ -18,10 +18,12 @@ setup(name='pinginventory',
     zip_safe=True,
     install_requires=[
         # -*- Extra requirements: -*-
+        "SQLAlchemy >= 0.5",
     ],
     entry_points={
         'console_scripts':[
             'pinginventory = pinginventory.commands:main',
         ]
-    }
+    },
+    test_suite='nose.collector',
 )
