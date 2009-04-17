@@ -5,7 +5,7 @@ import os
 
 import tempfile
 
-import popen2,os
+import subprocess
 
 def os_wait():
     try:
@@ -27,7 +27,7 @@ def ping(addrs, use_sudo=False):
     if use_sudo:
         cmd = "sudo " + cmd
 
-    pipe = os.popen(cmd)
+    pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, close_fds=True).stdout
 
     for line in pipe:
         if 'Status: Up' in line:
