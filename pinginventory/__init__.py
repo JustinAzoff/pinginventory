@@ -13,6 +13,9 @@ class PingInventory:
         model.init_model(model.sa.create_engine(uri))
         self.networks = c.get("scan", "networks").split(";")
 
+    def create_tables(self):
+        model.metadata.create_all()
+
     def list(self):
         return model.Inventory.list()
 

@@ -1,5 +1,9 @@
 from pinginventory import PingInventory
 import sys
+
+def setup(p):
+    p.create_tables()
+
 def take_inventory(p):
     i = p.take_inventory()
     print "Inventory ran for %s found %d hosts" % (i.endtime - i.starttime, i.numup)
