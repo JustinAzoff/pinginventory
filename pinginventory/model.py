@@ -40,7 +40,7 @@ class Inventory(Base):
 
     @classmethod
     def list(self):
-        return Session.query(Inventory).order_by(sa.desc(self.starttime))
+        return Session.query(Inventory).order_by(self.starttime)
     
     @classmethod
     def most(self):
@@ -53,6 +53,10 @@ class Inventory(Base):
     @classmethod
     def count(self):
         return Session.query(Inventory).count()
+
+    @classmethod
+    def get(self, inventory_id):
+        return Session.query(Inventory).get(inventory_id)
 
     nodes = orm.relation('Node', backref='inventory', lazy='dynamic',order_by='Node.ip',
                                 cascade="all, delete, delete-orphan")

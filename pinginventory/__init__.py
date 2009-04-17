@@ -13,6 +13,15 @@ class PingInventory:
         model.init_model(model.sa.create_engine(uri))
         self.networks = c.get("scan", "networks").split(";")
 
+    def list(self):
+        return model.Inventory.list()
+
+    def latest(self):
+        return model.Inventory.latest()
+
+    def get(self, inventory_id):
+        return model.Inventory.get(inventory_id)
+
     def get_latest_up_nodes(self):
         """Return all the nodes listed as being up"""
         i = model.Inventory.latest()
@@ -30,7 +39,7 @@ class PingInventory:
             
 
     def do_ping_scan(self):
-        return nmapping.ping(self.networks)
+        return nmapping.ping(self.networks,use_sudo=True)
 
     def take_inventory(self, scanner=None):
         if scanner is None:
