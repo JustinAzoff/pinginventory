@@ -1,6 +1,6 @@
 import ConfigParser
+from paste.deploy.converters import asbool
 import datetime
-
 
 import model
 from pinginventory import nmapping
@@ -12,6 +12,7 @@ class PingInventory:
         uri = c.get("db","uri")
         model.init_model(model.sa.create_engine(uri))
         self.networks = c.get("scan", "networks").split(";")
+        self.nmap_sudo = asbool(c.get("nmap", "use_sudo"))
 
     def create_tables(self):
         model.metadata.create_all()
@@ -42,7 +43,7 @@ class PingInventory:
             
 
     def do_ping_scan(self):
-        return nmapping.ping(self.networks,use_sudo=True)
+        return nmapping.ping(self.networks,use_sudo=self.nmap_sudo)
 
     def take_inventory(self, scanner=None):
         if scanner is None:
