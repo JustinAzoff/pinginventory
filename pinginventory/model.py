@@ -61,11 +61,10 @@ class Inventory(Base):
     nodes = orm.relation('Node', backref='inventory', lazy='dynamic',order_by='Node.ip',
                                 cascade="all, delete, delete-orphan")
 
-
 class Node(Base):
     __tablename__ = 'node'
     inventory_id= sa.Column(sa.types.Integer,       sa.ForeignKey('inventory.id'), primary_key=True)
-    ip          = sa.Column(PGInet,                 nullable=False, primary_key=True)
+    ip          = sa.Column(PGInet,                 nullable=False, primary_key=True, index=True)
 
     def __repr__(self):
         return "Node(inventory_id=%d, ip=%s)" % (self.inventory_id, self.ip)
