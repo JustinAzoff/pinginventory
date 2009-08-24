@@ -25,5 +25,8 @@ setup(name='pinginventory',
             'pinginventory = pinginventory.commands:main',
         ]
     },
+    setup_requires=[
+        "nose",
+    ],
     test_suite='nose.collector',
 )
