@@ -19,6 +19,7 @@ setup(name='pinginventory',
     install_requires=[
         # -*- Extra requirements: -*-
         "SQLAlchemy >= 0.5",
+        "PasteDeploy",
     ],
     entry_points={
         'console_scripts':[
