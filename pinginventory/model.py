@@ -7,7 +7,8 @@ from sqlalchemy.ext.declarative import declarative_base
 
 from sqlalchemy import MetaData
 from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy.databases.postgres import PGInet
+from sqlalchemy.dialects.postgresql import INET
+
 
 # SQLAlchemy database engine. Updated by model.init_model()
 engine = None
@@ -64,7 +65,7 @@ class Inventory(Base):
 class Node(Base):
     __tablename__ = 'node'
     inventory_id= sa.Column(sa.types.Integer,       sa.ForeignKey('inventory.id'), primary_key=True)
-    ip          = sa.Column(PGInet,                 nullable=False, primary_key=True, index=True)
+    ip          = sa.Column(INET,                 nullable=False, primary_key=True, index=True)
 
     def __repr__(self):
         return "Node(inventory_id=%d, ip=%s)" % (self.inventory_id, self.ip)
