@@ -1,9 +1,0 @@
-setup.cfg
-setup.py
-pinginventory/__init__.py
-pinginventory.egg-info/PKG-INFO
-pinginventory.egg-info/SOURCES.txt
-pinginventory.egg-info/dependency_links.txt
-pinginventory.egg-info/entry_points.txt
-pinginventory.egg-info/top_level.txt
-pinginventory.egg-info/zip-safe
