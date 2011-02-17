@@ -24,12 +24,23 @@ def show(p, idx=None):
     for n in i.nodes:
         print n.ip
 
+def graph(p):
+    import matplotlib
+    import matplotlib.pyplot
+    data=[(x.starttime, x.numup) for x in p.list()]
+    matplotlib.pyplot.plot_date([x[0] for x in data], [x[1] for x in data], linestyle='-')
+    matplotlib.pyplot.title("Pingable Hosts")
+    matplotlib.pyplot.xlabel("Date")
+    matplotlib.pyplot.ylabel("Hosts")
+    matplotlib.pyplot.show()
+
 def main():
     if len(sys.argv) < 3:
         sys.stderr.write("Usage %s file.ini command [args]\n" % sys.argv[0])
         sys.stderr.write("Commands:\n"
                          "  take_inventory\n"
                          "  list\n"
+                         "  graph\n"
                          "  show [inventory_id]\n"
                          "  show_ip ip\n")
 
