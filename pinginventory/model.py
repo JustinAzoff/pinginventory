@@ -14,7 +14,7 @@ from sqlalchemy.dialects.postgresql import INET
 engine = None
 
 # SQLAlchemy session manager. Updated by model.init_model()
-Session = scoped_session(sessionmaker(autoflush=True))
+Session = scoped_session(sessionmaker(autoflush=True, autocommit=True))
 
 # Global metadata. If you have multiple databases with overlapping table
 # names, you'll need a metadata for each database
