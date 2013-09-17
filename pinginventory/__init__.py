@@ -49,6 +49,7 @@ class PingInventory:
         if scanner is None:
             scanner = self.do_ping_scan
 
+        model.Session.begin()
         i = model.Inventory()
         i.starttime = datetime.datetime.now()
         model.Session.add(i)
@@ -65,6 +66,5 @@ class PingInventory:
         i.endtime = datetime.datetime.now()
 
         model.Session.add(i)
-        model.Session.flush()
         model.Session.commit()
         return i
